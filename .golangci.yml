@@ -1,24 +1,32 @@
+version: "2"
 run:
-  timeout: 5m
   tests: true
-
 linters:
   enable:
-    - errcheck
-    - govet
-    - staticcheck
-    - unused
-    - ineffassign
-    - gosimple
-    - gofmt
-    - goimports
+    - bodyclose
     - misspell
     - unconvert
     - unparam
-    - bodyclose
-    - noctx
-
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
 issues:
-  exclude-use-default: false
   max-issues-per-linter: 0
   max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
